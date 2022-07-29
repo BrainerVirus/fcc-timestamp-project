@@ -38,6 +38,11 @@ app.get("/api/:dateUnix", (req, res) => {
   if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
   res.json({ unix: unix, utc: utc });
 });
+app.get("/api/", (req, res) => {
+  const unix = new Date().getTime();
+  const utc = new Date().toUTCString();
+  res.json({ unix: unix, utc: utc });
+});
 
 const port = 8080;
 
