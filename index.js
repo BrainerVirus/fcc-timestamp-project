@@ -35,6 +35,7 @@ app.get("/api/:dateUnix", (req, res) => {
   console.log("params: ", req.params.dateUnix);
   var date_string = req.params.dateUnix;
   var dateToSend = new Date(date_string);
+  if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
   if (isNaN(dateToSend.getTime())) dateToSend = new Date(parseInt(date_string));
   res.json({ unix: dateToSend.getTime(), utc: dateToSend.toUTCString() });
   // const unix = new Date(date).getTime();
