@@ -36,7 +36,7 @@ app.get("/api/:dateUnix", (req, res) => {
   const unix = new Date(date).getTime();
   const utc = new Date(date).toUTCString();
   if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
-  if (!Date.parse(date)) return res.json({ error: "Invalid Date" });
+  // if (!Date.parse(date)) return res.json({ error: "Invalid Date" });
   res.json({ unix: unix, utc: utc });
 });
 app.get("/api/", (req, res) => {
