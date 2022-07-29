@@ -36,11 +36,12 @@ app.get("/api/:dateUnix", (req, res) => {
   var date_string = req.params.dateUnix;
   var dateToSend = new Date(date_string);
   if (isNaN(dateToSend.getTime())) dateToSend = new Date(parseInt(date_string));
-  const unix = new Date(date).getTime();
-  const utc = new Date(date).toUTCString();
-  if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
-  // if (!Date.parse(date)) return res.json({ error: "Invalid Date" });
-  res.json({ unix: unix, utc: utc });
+  res.json({ unix: dateToSend.getTime(), utc: dateToSend.toUTCString() });
+  // const unix = new Date(date).getTime();
+  // const utc = new Date(date).toUTCString();
+  // if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
+  // // if (!Date.parse(date)) return res.json({ error: "Invalid Date" });
+  // res.json({ unix: unix, utc: utc });
 });
 app.get("/api/", (req, res) => {
   const unix = new Date().getTime();
