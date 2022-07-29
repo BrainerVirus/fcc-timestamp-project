@@ -35,8 +35,7 @@ app.get("/api/:dateUnix", (req, res) => {
   console.log("params: ", req.params.dateUnix);
   const unix = new Date(date).getTime();
   const utc = new Date(date).toUTCString();
-  if (!moment(date).isValid())
-    return res.json({ error: "invalid date format" });
+  if (!moment(date).isValid()) return res.json({ error: "Invalid Date" });
   res.json({ unix: unix, utc: utc });
 });
 
